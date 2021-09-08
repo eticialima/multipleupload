@@ -1,0 +1,41 @@
+{% extends 'base/_dashboard_base.html' %} 
+{% block main_content %}
+    <h1>Lista</h1><br>
+    <td class="text-center">
+         <a class="btn btn-primary shadow" href="{% url 'arquivos-new' %}">Adicionar</a> 
+    </td>
+    <br><br>
+    <table class="table table-light table-bordered rounded">
+        <thead class="thead-dark">
+            <tr class="table-borderless">
+                <th scope="col">#</th>
+                <th scope="col">id</th>
+                <th scope="col">name</th>
+                <th scope="col">data</th>
+                <th scope="col">detalhes</th>
+            </tr>
+        </thead>
+
+        {% for form in object_list %}
+        <tbody>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="row">{{ form.pk }}</th>
+                <th scope="row">{{ form.name }}</th>
+                <th scope="row">{{ form.data }}</th>
+                <th>
+                {% if form.pk %}
+                <a href="{% url 'arquivos-detail' form.pk %}">detail</a>
+                {% endif %} 
+                {% if form.pk %}
+                <a href="{% url 'arquivos-update' form.pk %}">update</a>
+                {% endif %}
+                {% if form.pk %}
+                <a href="{% url 'arquivos-delete' form.pk %}">delete</a>
+                {% endif %}
+                </th>
+            </tr>
+        </tbody>
+        {% endfor %}
+    </table>
+{% endblock %}

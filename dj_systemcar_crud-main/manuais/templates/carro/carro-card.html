@@ -1,0 +1,29 @@
+<h1>Todos os carros listados no sistema</h1><br>
+<td class="text-center">
+    <a class="btn btn-primary shadow mr-2" href="{% url 'carro-novo' %}">Registrar um novo carro no sistema</a>
+</td><br><br>
+<hr><br>
+<table class="table table-light table-bordered rounded ">
+    <thead class="thead-dark">
+        <tr class="table-borderless">
+            <th scope="col">#</th>
+            <th scope="col">Carro</th>
+            <th scope="col">Modelo:</th>
+            <th scope="col">ID_fonte</th>
+            <th scope="col">Manuais</th>
+            <th scope="col">Deletar</th>
+        </tr>
+    </thead>
+    {% for objects in object_list %}
+    <tbody>
+        <tr>
+            <th scope="row">{{ objects.id }}</td>
+            <th scope="row">{{ objects.nome_carro }}</td>
+            <th scope="row">{{ objects.modelo }}</td>
+            <th scope="row">{{ objects.idfonte }}</td>
+            <th><a class="btn" href="{% url 'manuais' objects.pk %}"><i class="fa fas fa-eye fa-1x" style="color:#c2b200;" aria-hidden="true"></i></a></td>
+            <th><a class="btn" href="{% url 'carro-alterar' objects.pk %}"><i class="fas fa-file-invoice fa-1x" style="color:#0013c2;" aria-hidden="true"></i></a></td>
+        </tr>
+    </tbody>
+    {% endfor %}
+</table>

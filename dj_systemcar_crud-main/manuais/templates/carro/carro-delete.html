@@ -1,0 +1,17 @@
+{% extends 'base/_dashboard_base.html' %}
+{% block title %}Deletar Carro{% endblock %}
+{% block body_title %}Deletar Carro{% endblock %}
+{% block main_content %}
+    <div class="container">
+        <h2>Esse carro será deletado: {{ object.nome_carro }}</h2> 
+        <p>Todos os registro desse carro será deletado do banco de dados.</p>
+        <p>Tem certeza que deseja executar esta ação ?</p>
+        <form method="POST" class="form">
+            {% csrf_token %}
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Sim</button>
+                <div class="btn btn-primary" onclick="history.back();">Cancelar</div>
+            </div>
+        </form>
+    </div>
+{% endblock %}
