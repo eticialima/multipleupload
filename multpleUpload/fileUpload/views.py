@@ -1,6 +1,8 @@
 from django.views.generic.edit import CreateView
+from django.views.generic import ListView, DetailView
 from django.contrib import messages
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
+from django.utils import timezone 
 from django.urls import reverse_lazy 
 from rest_framework import viewsets
 from .forms import PersonForm
@@ -23,7 +25,7 @@ class PersonPhotoSerializerViewSet(viewsets.ModelViewSet):
 
 
 class PersonNewView(CreateView):
-    template_name = 'home.html'
+    template_name = 'create.html'
     form_class = PersonForm
     success_url = reverse_lazy('home')
     success_message = 'Person Cadastrado com sucesso'
@@ -47,8 +49,22 @@ class PersonNewView(CreateView):
         return reverse_lazy('home')
  
 
- 
+class PostPersonPhoto(ListView):
+    template_name = 'list.html'
+    form_class = PersonPhoto
+    model = Person
 
+
+class PostDetailPhoto(DetailView):
+    template_name = 'details.html' 
+    model = PersonPhoto
+    
+    def get_object(self):
+        id= self.kwargs.get('id')
+        return get_object_or_404(Person, id=id)
+    
+    
+     
 # FMView
 # def home(request):
 # 	form = PersonForm

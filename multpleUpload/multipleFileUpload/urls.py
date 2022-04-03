@@ -28,9 +28,9 @@ router.register(r'photoperson', PersonPhotoSerializerViewSet)
 urlpatterns = [
     # admin e normal
     url(r'^admin/', admin.site.urls),
-    url(r'home/', include('fileUpload.urls')),
+    url(r'', include('fileUpload.urls')),
     
     # API
-    path('', include(router.urls)),
+    path('api', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load django_bootstrap5 %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-6">
+        <h2>DETALHES</h2>
+        <hr>   
+        <p>id: {{object.id}}</p>
+        <p>Name: {{object.name}}</p>
+        <p>Age: {{object.age}}</p> 
+        {% for el in object.photos.all %} 
+            <a href="{{el.photo.url}}" target="_blank">Link{{el.id}}</a>
+        {% endfor %}
+    </div>
+    <div class="col-md-6">
+        <img src="https://i.ibb.co/P42sJxX/photo.jpg" width="500" height="500" alt="photo">
+    </div>
+</div>
+{% endblock %}
